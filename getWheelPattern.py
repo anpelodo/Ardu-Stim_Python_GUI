@@ -1,16 +1,18 @@
 import serial as s
 import time as t
 
-sc = s.Serial(baudrate=115200, port="COM3")
+sc = s.Serial(baudrate=115200)
 
 #def getWheelPattern():
 size = int()
 pattern = str()
 
+sc.port = "COM3"
+
 sc.open()
 
 print("waiting the port is opened")
-while sc.isOpen():
+while not sc.isOpen():
     print(".")
     t.sleep(0.001)
 
@@ -20,12 +22,11 @@ sc.write(b"p")
 
 print("Waiting for the response of the microcontroller")
 # Waiting for the response of the microcontroller
-t.sleep(1)
 aux = sc.inWaiting()
 print(aux)
 
 while aux < 2:
-    t.sleep(0.0005)
+    t.sleep(0.005)
     aux = sc.inWaiting()
 
 print("Getting the value")
@@ -47,7 +48,7 @@ buff = buff.split("\r\n", 1)
 
 pattern = buff[0]
 
-print("Size of pattern:" + str(size))
+print("Size of pattern: " + str(size))
 print("Pattern:\r\n" + pattern)
 
 sc.close()
