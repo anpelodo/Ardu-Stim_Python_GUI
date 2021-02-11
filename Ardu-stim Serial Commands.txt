@@ -1,0 +1,16 @@
+All Serial commands:
+
+a -> nothing
+f -> Set the fixed RPM Value (2 bytes), first Byte is the less significant byte: 'f' 0xC4 0x09 for 2500 RPM fixed
+c -> Save the current config on the microcontroler
+L -> Request of the list of the wheel names separeted with '\r\n' (String)
+M -> Set the RPM mode 0=Sweep ,1=Fixed , 2=POT : 'M' 0x01 (set Fixed RPM mode)
+m -> Request the RPM mode
+n -> Request the number of wheels (String)
+N -> Request the number of the current wheel (String)
+p -> Request the size of the current wheel (String)
+P -> Request the pattern of the current wheel (String)
+R -> Request the current RPM  (String)
+s -> Set the bottom and top sweep range, first the bottom 2 bytes, then the top 2 bytes, first the less significant byte
+S -> Set the current wheel (1 byte)
+X -> Selecting the next wheel
